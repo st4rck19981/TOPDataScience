@@ -1,0 +1,50 @@
+<html>
+<head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <script src="{{url_for('static', filename='plots.js')}}"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.10/d3.min.js" charset="utf-8"></script>   -->
+
+</head>
+
+<body>
+    <h3>Dataset: {{data}}</h3>
+
+    <h3>Descripcion:</h3>
+    <p>Columnas: {{info}}</p>
+
+    <script>
+        var columnas = {{ info|safe }};  //lista python to javascript
+        //console.log(columnas);
+    </script>
+
+
+    <h3><a onclick="table('{{data}}',columnas)">Tabla*</a></h3>
+
+    <div style="height: 300px;overflow: scroll;">
+    <div id="tabla"></div>
+    </div>
+
+    <h3>Graficos:</h3>
+    <ul>
+        <li><a onclick="diagrama()">Barras* </a></li>
+        <li><a onclick="scatter()">Puntos*</a</li>
+        <li><a onclick="scatterI()">Puntos Interactivo*</a></li>
+        <li><a onclick="scatterZOOM('{{data}}')">Etiquetas*</a></li>
+        <li><a onclick="distanceH()">Horizontal*</a></li>
+
+    </ul>
+
+
+    <h4>Visualizacion</h4>
+
+    <plot width="800" height="500"></plot> 
+    
+    
+
+</body>
+
+<script src="{{url_for('static', filename='plots.js')}}"></script>
+
+
+</html>
