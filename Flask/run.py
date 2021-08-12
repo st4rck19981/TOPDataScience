@@ -22,5 +22,12 @@ def visual(data = 'midata.csv'):
     info=df.columns.tolist()
     return render_template('visual.html', data=data, info=json.dumps(info))
 
+@app.route('/main/<data>')
+def main(data='midata.csv'):
+    df=pd.read_csv('static/'+data)
+    info=df.columns.tolist()
+    return render_template('main.html', data=data, info=json.dumps(info))
+
+
 if __name__ == '__main__':
     app.run(debug = True, port=8000)
